@@ -30,21 +30,24 @@
     </table>
 </div>
 
-    <div id="user-info-panel" style="position: fixed; top: calc(60px + env(safe-area-inset-top)); left: 15px; width: 220px; z-index: 1011; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 8px; border-bottom: 1px solid #444; backdrop-filter: blur(5px); color: white;">
-        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-            <div>
-                <small style="color: #aaa; font-size: 0.5rem; display: block;">GOLFER</small>
-                <strong id="display-user-name" style="color: #00ff88; font-size: 0.9rem;">User</strong>
-                <span id="user-status-badge" style="font-size: 0.5rem; padding: 2px 5px; border-radius: 10px; margin-left: 5px;"></span>
+   <div id="user-info-panel" style="position: fixed; top: calc(60px + env(safe-area-inset-top)); left: 15px; width: 180px; z-index: 1011; background: rgba(0,0,0,0.7); padding: 8px; border-radius: 8px; border-bottom: 1px solid #444; backdrop-filter: blur(5px); color: white;">
+        <div style="display: flex; justify-content: flex-start; align-items: center; gap: 6px; margin-bottom: 5px;">
+            <div style="flex-shrink: 1; min-width: 0;">
+                <small style="color: #aaa; font-size: 0.5rem; display: block; line-height: 1;">GOLFER</small>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <strong id="display-user-name" style="color: #00ff88; font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80px;">User</strong>
+                    <span id="user-status-badge" style="font-size: 0.45rem; padding: 1px 4px; border-radius: 4px; background: #555; text-transform: uppercase;"></span>
+                </div>
             </div>
-            <button id="logoutBtn" style="background: none; border: 1px solid #ff4444; color: #ff4444; font-size: 0.6rem; padding: 2px 6px; border-radius: 4px;">Logout</button>
+            <button id="logoutBtn" style="background: none; border: 1px solid #ff4444; color: #ff4444; font-size: 0.55rem; padding: 2px 5px; border-radius: 4px; flex-shrink: 0; margin-left: auto;">Logout</button>
         </div>
         
-        <div style="border-top: 1px solid #444; padding-top: 8px;">
-            <div id="trial-info-text" class="trial-banner"></div>
-            <div style="display: flex; gap: 5px; margin-top: 4px;">
-                <input type="text" id="roundIdInput" placeholder="Group ID" style="width: 70%; background: #222; border: 1px solid #444; color: white; font-size: 0.7rem; padding: 4px; border-radius: 4px;">
-                <button onclick="syncMultiplayer()" style="width: 30%; background: #27ae60; color: white; border: none; font-size: 0.6rem; border-radius: 4px; cursor: pointer;">Sync</button>
+        <div style="border-top: 1px solid #444; padding-top: 5px;">
+            <div id="trial-info-text" class="trial-banner" style="font-size: 0.6rem; color: #ff4444; margin-bottom: 4px; font-weight: bold;"></div>
+            
+            <div style="display: flex; justify-content: flex-start; gap: 5px;">
+                <input type="text" id="roundIdInput" placeholder="ID" style="width: 75px; background: #222; border: 1px solid #444; color: white; font-size: 0.7rem; padding: 4px; border-radius: 4px;">
+                <button onclick="syncMultiplayer()" style="padding: 0 8px; background: #27ae60; color: white; border: none; font-size: 0.6rem; border-radius: 4px; cursor: pointer; height: 24px;">Sync</button>
             </div>
         </div>
     </div>
@@ -95,7 +98,7 @@
 </div>
 
 <div class="ui-overlay">
-    <div id="hole-selector-container"><br><br><br><br><br><br><br><br><br><br>
+    <div id="hole-selector-container"><br><br><br><br><br><br><br><br><br>
             <select id="holeSelect" class="menu-button-ops">
             <option value="">Hole #</option>
             <option value="1">Hole 1: 418m</option>
