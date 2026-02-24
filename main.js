@@ -1356,7 +1356,7 @@ async function checkAccess() {
     const overlay = document.getElementById('auth-overlay');
     if (!session) { overlay.style.display = 'flex'; return; }
 
-    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
 
     // 1. Ambil/Buat Profil
     let { data: profile } = await sb.from('profiles').select('*').eq('id', session.user.id).maybeSingle();
@@ -1441,6 +1441,7 @@ function lockUI(email, merchantId) {
     btnContainer.appendChild(btnXendit);
 }
 checkAccess();
+
 
 // akses Xendit Payment
 async function startXenditPayment(userProfile) {
