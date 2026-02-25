@@ -6,7 +6,7 @@ const supabaseUrl = 'https://jltjrfhbreswadzlexzg.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsdGpyZmhicmVzd2FkemxleHpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxMjA4NjIsImV4cCI6MjA4NTY5Njg2Mn0.mS7QjBoWBS-xYZcAE--SaZHioJ_RqA57l_Bs5p6ppag';
 const sb = supabase.createClient(supabaseUrl, supabaseKey);
 
-Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NmUzZDVlMi1lM2Q3LTQzZDUtODg2Ni0yZTEzZGViODFjYTAiLCJpZCI6MzkwMjY2LCJpYXQiOjE3NzA5Nzg4ODV9.bGZbsj_VhF4AviF2Zd6Ohin27yoQ9tthvyWLbUj5fjM"
+Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5ODI3YTZiMS0xMmQxLTQ5MjEtYjkwYy0wMzkwZDUwNzA0ODYiLCJpZCI6MzkwMjY2LCJpYXQiOjE3NzE5NDQ3NzF9.oSyyw-EfmIReUGiyrXd5nugPQnoMjXJH_ySC66NdjC0"
 const viewer = new Cesium.Viewer('cesiumContainer', {
     homeButton: false,
     fullscreenButton: false,
@@ -45,7 +45,7 @@ if (!currentRoundId) {
 // 2. LOAD ASSET TILESET
 async function init() {
     try {
-        const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(4453573);
+        const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(4480001);
         viewer.scene.primitives.add(tileset);
         tileset.classificationType = Cesium.ClassificationType.BOTH;
         viewer.camera.flyTo({//-6.9168164,107.7640485
