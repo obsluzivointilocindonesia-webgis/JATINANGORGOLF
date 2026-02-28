@@ -5,8 +5,9 @@ let userLat = 0, userLon = 0;
 const supabaseUrl = 'https://jltjrfhbreswadzlexzg.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsdGpyZmhicmVzd2FkemxleHpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxMjA4NjIsImV4cCI6MjA4NTY5Njg2Mn0.mS7QjBoWBS-xYZcAE--SaZHioJ_RqA57l_Bs5p6ppag';
 const sb = supabase.createClient(supabaseUrl, supabaseKey);
+let playerHCPs = {}; // Menyimpan { "Nama Pemain": nilai_hcp }
 
-Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzY2ZhMGQ3MS1mYzYwLTQ1NzktODY1Mi1lODRhZjRmMWE4Y2EiLCJpZCI6Mzg0MjAyLCJpYXQiOjE3Njk1Njg5ODJ9.5U2zZd_um-3-iYrpnfZg1Xt7eI7N_CPTCQHoa2xB0jQ"
+Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5ODI3YTZiMS0xMmQxLTQ5MjEtYjkwYy0wMzkwZDUwNzA0ODYiLCJpZCI6MzkwMjY2LCJpYXQiOjE3NzE5NDQ3NzF9.oSyyw-EfmIReUGiyrXd5nugPQnoMjXJH_ySC66NdjC0"
 const viewer = new Cesium.Viewer('cesiumContainer', {
     homeButton: false,
     fullscreenButton: false,
@@ -45,20 +46,20 @@ if (!currentRoundId) {
 // 2. LOAD ASSET TILESET
 async function init() {
     try {
-        const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(4406223);
+        const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(4480001);
         viewer.scene.primitives.add(tileset);
         tileset.classificationType = Cesium.ClassificationType.BOTH;
-        viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(107.6258056, -6.8698692729, 990),
-            orientation: { heading: Cesium.Math.toRadians(0), pitch: Cesium.Math.toRadians(-15.0), roll: 0.0 },
+        viewer.camera.flyTo({//-6.9168164,107.7640485
+        destination: Cesium.Cartesian3.fromDegrees(107.7640485,-6.9168164, 1450),
+            orientation: { heading: Cesium.Math.toRadians(0), pitch: Cesium.Math.toRadians(-55.0), roll: 0.0 },
             duration: 2
-        });    
+        });      
     } catch (e) { console.error(e); }
 }
 init();
 async function loadHoles() {
     try {
-        const holeResource = await Cesium.IonResource.fromAssetId(4480561);
+        const holeResource = await Cesium.IonResource.fromAssetId(4473734);
         const holeDataSource = await Cesium.GeoJsonDataSource.load(holeResource);
         await viewer.dataSources.add(holeDataSource);
 
@@ -81,7 +82,7 @@ async function loadHoles() {
             };
 
             entity.label = {
- 		        text: `HOLE ${entity.properties.HoleNo}\nPAR ${entity.properties.PAR}\nSI ${entity.properties.SI}`,
+                text: `HOLE ${entity.properties.HoleNo}\nPAR ${entity.properties.PAR}\nSI ${entity.properties.SI}`,
                 font: 'bold 16pt "Arial Black", Gadget, sans-serif',
                 fillColor: Cesium.Color.WHITE,
                 outlineColor: Cesium.Color.BLACK,
@@ -400,111 +401,111 @@ function renderChart(labels, data) {
 // 7. KONTUR & CLEAR
 // VIEWER PER HOLE dan LOAD DATA ASSET KONTUR
 const holeData = {
- "1": {//-6.868553594615521, 107.62457935894973;  4406266
-        center: Cesium.Cartesian3.fromDegrees(107.6245793589, -6.86855359, 1000), // Koordinat Hole 1
-        contourAssetId: 4406266, // ID Asset Kontur Hole 1 di Ion
-        heading: 210, pitch: -35, roll:0 
+ "1": {//-6.9143242,107.7652945
+        center: Cesium.Cartesian3.fromDegrees(107.7652945,-6.9143242, 990), // Koordinat Hole 1
+        contourAssetId: 4473235, // ID Asset Kontur Hole 1 di Ion
+        heading: 150, pitch: -40, roll:0 
     },
-    "2": {//-6.8703580,107.6238354 ; 4406267
-        center: Cesium.Cartesian3.fromDegrees(107.6238354, -6.8703580, 1000),
-        contourAssetId: 4406267,
-        heading: 25, pitch: -60, roll:0
-    },
-
-    "3": {//-6.8697840,107.6244687 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6244687, -6.8697840, 950),
-        contourAssetId: 4406268,
-        heading: 200, pitch: -45, roll:0
-    },
-
-    "4": {//-6.8715004,107.6247602 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6247602, -6.8715004, 1050),
-        contourAssetId: 4406269,
-        heading: 180, pitch: -55, roll:0
-    },
-
-    "5": {//-6.8732492,107.6243212 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6243212, -6.8732492, 950),
-        contourAssetId: 4406270,
-        heading: 200, pitch: -45, roll:0
-    },
-
-    "6": {//-6.8739832,107.6250553 
-        center: Cesium.Cartesian3.fromDegrees(107.6250553, -6.8739832, 950),
-        contourAssetId: 4406272,
-        heading: 120, pitch: -55, roll:0
-    },
-
-    "7": {//-6.8735298,107.62570297 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.62570297, -6.8735298, 950),
-        contourAssetId: 4406273,
-        heading: 270, pitch: -60, roll:0
-    },
-
-    "8": {//-6.8716947,107.6251632 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6251632, -6.8716947, 950),
-        contourAssetId: 4406274,
-        heading: 355, pitch: -45, roll:0
-    },
-
-    "9": {//-6.8690032,107.6250409 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6250409, -6.8690032, 1050),
-        contourAssetId: 4406275,
-        heading: 19, pitch: -65, roll:0
-    },
-
-    "10": {//-6.8692191,107.6254655 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6254655, -6.8692191, 950),
-        contourAssetId: 4406276,
-        heading: 190, pitch: -50, roll:0
-    },
-
-    "11": {//-6.8710111,107.6255662 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6255662, -6.8710111, 950),
-        contourAssetId: 4406277,
-        heading: 168, pitch: -55, roll:0
-    },
-
-    "12": {//-6.8693631,107.6258397 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6258397, -6.8693631, 980),
-        contourAssetId: 4406278,
-        heading: 3, pitch: -45, roll:0
-    },
-
-    "13": {//-6.8693127,107.6262355 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6262355, -6.8693127, 980),
-        contourAssetId: 4406279,
-        heading: 185, pitch: -45, roll:0
-    },
-
-    "14": {//-6.8729829,107.6259116 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6259116, -6.8729829, 940),
-        contourAssetId: 4406280,
+    "2": {//-6.9187865,107.7675594
+        center: Cesium.Cartesian3.fromDegrees(107.7675594, -6.9187865, 980),
+        contourAssetId: 4473238,
         heading: 150, pitch: -45, roll:0
     },
 
-    "15": {//-6.8742549,107.6269605 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6269605, -6.8742549, 930),
-        contourAssetId: 4406281,
-        heading: 160, pitch: -78, roll:0
+    "3": {//-6.9197379,107.7666501
+        center: Cesium.Cartesian3.fromDegrees(107.7666501,-6.9197379, 1050),
+        contourAssetId: 4473239,
+        heading: 330, pitch: -60, roll:0
     },
 
-    "16": {//-6.8734561,107.6265773 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6265773, -6.8734561, 950),
-        contourAssetId: 4406282,
-        heading: 10, pitch: -60, roll:0
+    "4": {//-6.9178183,107.76579133 
+        center: Cesium.Cartesian3.fromDegrees(107.76579133 ,-6.9178183, 990),
+        contourAssetId: 4473241,
+        heading: 358, pitch: -60, roll:0
     },
 
-    "17": {//-6.8712539,107.6268688 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6268688, -6.8712539, 950),
-        contourAssetId: 4406283,
-        heading: 10, pitch: -43, roll:0
+    "5": {//-6.9132633,107.7642505
+        center: Cesium.Cartesian3.fromDegrees(107.7642505,-6.9132633, 950),
+        contourAssetId: 4473242,
+        heading: 345, pitch: -60, roll:0
     },
 
-    "18": {//-6.8686092,107.6265665 ; 
-        center: Cesium.Cartesian3.fromDegrees(107.6265665, -6.8686092, 1000),
-        contourAssetId: 4406284,
-        heading: 348, pitch: -43, roll:0
+    "6": {//-6.9112763,107.7643516
+        center: Cesium.Cartesian3.fromDegrees(107.7643516, -6.9112763, 990),
+        contourAssetId: 4473243,
+        heading: 10, pitch: -80, roll:0
+    },
+
+    "7": {//-6.9125224,107.7665154
+        center: Cesium.Cartesian3.fromDegrees(107.7665154, -6.9125224, 1070),
+        contourAssetId: 4473244,
+        heading: 135, pitch: -70, roll:0
+    },
+
+    "8": {//-6.9137433,107.7678288 
+        center: Cesium.Cartesian3.fromDegrees(107.7678288 , -6.9137433, 990),
+        contourAssetId: 4473246,
+        heading: 150, pitch: -60, roll:0
+    },
+
+    "9": {//-6.9130865,107.7654124
+        center: Cesium.Cartesian3.fromDegrees(107.7654124,-6.9130865, 995),
+        contourAssetId: 4473247,
+        heading: 320, pitch: -60, roll:0
+    },
+
+    "10": {//-6.9148462,107.7626087
+        center: Cesium.Cartesian3.fromDegrees(107.7626087,-6.9148462, 990),
+        contourAssetId: 4473248,
+        heading: 180, pitch: -60, roll:0
+    },
+
+    "11": {//-6.9188286,107.7622214
+        center: Cesium.Cartesian3.fromDegrees(107.7622214,-6.9188286, 1000),
+        contourAssetId: 4473249,
+        heading: 200, pitch: -60, roll:0
+    },
+
+    "12": {//-6.9207904,107.7627687
+        center: Cesium.Cartesian3.fromDegrees(107.7627687,-6.9207904, 900),
+        contourAssetId: 4473251,
+        heading: 150, pitch: -60, roll:0
+    },
+
+    "13": {//-6.9231226,107.7644105
+        center: Cesium.Cartesian3.fromDegrees(107.7644105, -6.9231226, 1000),
+        contourAssetId: 4473252,
+        heading: 150, pitch: -60, roll:0
+    },
+
+    "14": {//-6.9234004,107.7671974
+        center: Cesium.Cartesian3.fromDegrees(107.7671974,-6.9234004, 1020),
+        contourAssetId: 4473253,
+        heading: 80, pitch: -60, roll:0
+    },
+
+    "15": {//-6.9220449,107.7677783
+        center: Cesium.Cartesian3.fromDegrees(107.7677783,-6.9220449, 950),
+        contourAssetId: 4473254,
+        heading: 270, pitch: -75, roll:0
+    },
+
+    "16": {//-6.9208830,107.7654124
+        center: Cesium.Cartesian3.fromDegrees(107.7654124,-6.9208830, 1030),
+        contourAssetId: 4473255,
+        heading: 270, pitch: -60, roll:0
+    },
+
+    "17": {//-6.9178099,107.7628697
+        center: Cesium.Cartesian3.fromDegrees(107.7628697,-6.9178099, 1000),
+        contourAssetId: 4473256,
+        heading: 0, pitch: -60, roll:0
+    },
+
+    "18": {//-6.9135328,107.7631813
+        center: Cesium.Cartesian3.fromDegrees(107.7631813,-6.9135328, 1030),
+        contourAssetId: 4473257,
+        heading: 0, pitch: -70, roll:0
     }
 };
 
@@ -667,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //-----------------------------------------------
 document.getElementById('saveTrackBtn').addEventListener('click', async () => {
     const holeId = document.getElementById('holeSelect').value;
-    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
     if (!holeId) return alert("Select Hole # First");
     if (activePoints.length < 2) return alert("At least 2 points to save track");
 
@@ -871,7 +872,7 @@ document.getElementById('historyBtn').addEventListener('click', async () => {
     }
 
     // 1. Deteksi Lapangan Saat Ini
-    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
 
     console.log(`Mengambil history untuk: ${currentUser.id} di lapangan ${currentMerchantId}`);
 
@@ -947,7 +948,7 @@ async function deleteTrackHistory() {
     if (!currentUser) return alert("Please login first");
 
     // 1. Deteksi Merchant Saat Ini
-    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
 
     // 2. Ambil data HANYA untuk user ini DAN lapangan ini
     const { data: cloudTracks, error } = await sb
@@ -1098,94 +1099,128 @@ document.getElementById('viewDetailBtn').addEventListener('click', async () => {
 // 2. Tombol Export PDF
 // Saat tombol PDF diklik
 document.getElementById('exportPdfBtn').addEventListener('click', async () => {
-    // 1. Tarik data terbaru dulu
-    await fetchGroupScores();
+    Swal.fire({ title: 'Menyiapkan PDF...', didOpen: () => { Swal.showLoading(); } });
 
-    // 2. Siapkan tabel PDF
+    await fetchGroupScores(); // Ambil data terbaru dari DB
     const ready = prepareHiddenPdfTable();
 
     if (ready) {
         const element = document.getElementById('pdf-report-hidden');
-        element.style.display = 'block'; // Tampilkan sebentar agar ter-render
+        element.style.display = 'block'; 
 
         const opt = {
-            margin:       0.5,
+            margin:       [0.3, 0.3, 0.3, 0.3],
             filename:     `TerraGOLF_${currentSyncRoundId}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+            html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' }
         };
 
-        html2pdf().set(opt).from(element).save().then(() => {
-            element.style.display = 'none'; // Sembunyikan lagi
-        });
+        // Tambahkan delay kecil agar render HTML selesai sempurna
+        setTimeout(() => {
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.style.display = 'none';
+                Swal.close();
+            });
+        }, 500);
     } else {
-        alert("Gagal menyiapkan data PDF. Pastikan data skor sudah masuk.");
+        Swal.fire('Error', 'Gagal menyiapkan data PDF. Pastikan data skor tersedia.', 'error');
     }
 });
 
 // FUNGSI TABEL VERTIKAL SEMBUNYI
 function prepareHiddenPdfTable() {
-    if (!groupData || groupData.length === 0) return false;
+    // Cek apakah data sudah ada
+    if (!groupData || groupData.length === 0) {
+        console.error("Data groupData kosong");
+        return false;
+    }
 
     const tbody = document.getElementById('table-body-detail-pdf');
     const thead = document.querySelector('#pdf-report-hidden table thead');
     const pdfRoundIdElem = document.getElementById('pdf-round-id');
     
-    if (!tbody || !thead) return false;
+    // Pastikan elemen HTML tujuan ada
+    if (!tbody || !thead) {
+        console.error("Elemen tabel PDF tidak ditemukan di DOM");
+        return false;
+    }
 
-    // 1. Set Round ID di Header PDF
     if (pdfRoundIdElem) {
         pdfRoundIdElem.textContent = currentSyncRoundId || "Personal Round";
     }
 
     const players = [...new Set(groupData.map(item => item.profiles?.full_name || 'Golfer'))];
     let playerTotals = players.map(() => 0);
-    let totalParAccumulator = 0; // Variabel penampung Total PAR
+    let totalParAccumulator = 0;
 
-    // 2. Render Header PDF
+    // Ambil mapping HCP per pemain
+    let playerHcpMap = {};
+    players.forEach(p => {
+        const pData = groupData.find(d => d.profiles?.full_name === p);
+        playerHcpMap[p] = pData ? (pData.profiles?.hcp || 0) : 0;
+    });
+
+    // 1. Render Header (Gunakan font lebih kecil agar muat)
     thead.innerHTML = `
         <tr style="background: #1a472a; color: white;">
-            <th style="border: 1px solid #ddd; padding: 8px;">Hole</th>
-            <th style="border: 1px solid #ddd; padding: 8px;">PAR</th>
-            ${players.map(p => `<th style="border: 1px solid #ddd; padding: 8px;">${p}</th>`).join('')}
+            <th style="border: 1px solid #ddd; padding: 5px; font-size: 9px;">Hole</th>
+            <th style="border: 1px solid #ddd; padding: 5px; font-size: 9px;">PAR</th>
+            ${players.map(p => `<th style="border: 1px solid #ddd; padding: 5px; font-size: 9px;">${p}</th>`).join('')}
         </tr>
     `;
 
-    // 3. Render Baris Hole 1 - 18
+    // 2. Render Baris Hole 1 - 18
     let rowsHtml = "";
     for (let h = 1; h <= 18; h++) {
         const holeEntries = groupData.filter(s => s.hole_number === h);
         const parVal = holeEntries.length > 0 ? parseInt(holeEntries[0].par) : 0;
-        
-        // Tambahkan ke total PAR
         totalParAccumulator += parVal;
 
         rowsHtml += `<tr>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${h}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${parVal || '-'}</td>`;
+            <td style="border: 1px solid #ddd; padding: 3px; text-align: center; font-size: 9px;">${h}</td>
+            <td style="border: 1px solid #ddd; padding: 3px; text-align: center; font-size: 9px;">${parVal || '-'}</td>`;
 
         players.forEach((p, index) => {
             const pScore = groupData.find(s => s.hole_number === h && s.profiles?.full_name === p);
             const strokes = pScore ? parseInt(pScore.strokes) : 0;
             playerTotals[index] += strokes;
-            rowsHtml += `<td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${strokes || '-'}</td>`;
+            rowsHtml += `<td style="border: 1px solid #ddd; padding: 3px; text-align: center; font-size: 9px;">${strokes || '-'}</td>`;
         });
-
         rowsHtml += `</tr>`;
     }
 
-    // 4. Tambahkan Baris TOTAL di paling bawah (Termasuk Total PAR)
+    // 3. Tambahkan Baris GROSS
     rowsHtml += `
         <tr style="background: #f2f2f2; font-weight: bold;">
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">TOTAL</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${totalParAccumulator}</td>
-            ${playerTotals.map(t => `<td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${t}</td>`).join('')}
+            <td style="border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 9px;">GROSS</td>
+            <td style="border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 9px;">${totalParAccumulator}</td>
+            ${playerTotals.map(t => `<td style="border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 9px;">${t}</td>`).join('')}
+        </tr>`;
+
+    // 4. Tambahkan Baris HCP (Warna Kuning Lembut)
+    rowsHtml += `
+        <tr style="background: #fffdf0;">
+            <td style="border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 9px; color: #856404;">HCP</td>
+            <td style="border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 9px;">-</td>
+            ${players.map(p => `<td style="border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 9px; color: #856404;">(${playerHcpMap[p]})</td>`).join('')}
+        </tr>`;
+
+    // 5. Tambahkan Baris NET (Warna Hijau Lembut)
+    rowsHtml += `
+        <tr style="background: #d4edda; font-weight: bold;">
+            <td style="border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 10px; color: #155724;">NET</td>
+            <td style="border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 10px;">-</td>
+            ${playerTotals.map((t, idx) => {
+                const net = t - playerHcpMap[players[idx]];
+                return `<td style="border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 10px; color: #155724;">${net}</td>`;
+            }).join('')}
         </tr>`;
 
     tbody.innerHTML = rowsHtml;
     return true;
 }
+
 
 //-----------------------------------------
 // REGISTER
@@ -1331,7 +1366,7 @@ async function saveScoreToCloud(hole, par, strokes, term) {
     if (!currentUser) return;
 
     // Tambahkan deteksi merchant
-    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
 
     const { error } = await sb
         .from('tracks')
@@ -1356,7 +1391,7 @@ async function checkAccess() {
     const overlay = document.getElementById('auth-overlay');
     if (!session) { overlay.style.display = 'flex'; return; }
 
-    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
 
     // 1. Ambil/Buat Profil
     let { data: profile } = await sb.from('profiles').select('*').eq('id', session.user.id).maybeSingle();
@@ -1442,12 +1477,13 @@ function lockUI(email, merchantId) {
 }
 checkAccess();
 
+
 // akses Xendit Payment
 async function startXenditPayment(userProfile) {
     // 1. Deteksi Lapangan secara otomatis berdasarkan Domain
     let merchantId = 'TGR'; // Default
-    if (window.location.hostname.includes('mvg')) {
-        merchantId = 'MVG';
+    if (window.location.hostname.includes('jng')) {
+        merchantId = 'JNG';
     }
 
     // 2. Ambil email dari auth
@@ -1497,7 +1533,7 @@ async function loadTracksFromCloud() {
     if (!session) return;
 
     // 1. Identifikasi lapangan saat ini
-    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
 
     // 2. Tambahkan .eq('merchant_id', ...) pada query
     const { data: tracks, error } = await sb
@@ -1761,14 +1797,47 @@ async function syncMultiplayer() {
     const inputId = document.getElementById('roundIdInput').value;
     if (!inputId) return Swal.fire('Info', 'Masukkan Round ID', 'info');
 
-    // 1. ISI VARIABEL GLOBAL INI TERLEBIH DAHULU
-    currentSyncRoundId = inputId; 
-    localStorage.setItem('active_round_id', inputId);
+    // 1. Input HCP untuk User yang sedang login saja
+    const { value: hcp } = await Swal.fire({
+        title: 'Input Handicap Anda',
+        input: 'number',
+        inputLabel: 'HCP ronde ini',
+        inputValue: 0,
+        showCancelButton: true,
+        inputAttributes: { min: 0, max: 36 }
+    });
 
-    // 2. Baru panggil fungsi tarik data
-    await fetchGroupScores();
+    if (hcp === undefined) return; // Batal jika user tekan cancel
 
-    Swal.fire({ icon: 'success', title: 'Synced!', text: `Round: ${currentSyncRoundId}`, timer: 1500 });
+    try {
+        // 2. Update HCP user ke database (tabel profiles)
+        // Asumsi variabel 'user' atau ID user sudah tersedia dari sesi login
+        const userId = (await sb.auth.getUser()).data.user.id; 
+        
+        const { error: updateError } = await sb
+            .from('profiles')
+            .update({ hcp: parseInt(hcp) })
+            .eq('id', userId);
+
+        if (updateError) throw updateError;
+
+        // 3. Lanjutkan proses Sync seperti biasa
+        currentSyncRoundId = inputId; 
+        localStorage.setItem('active_round_id', inputId);
+
+        await fetchGroupScores();
+
+        Swal.fire({ 
+            icon: 'success', 
+            title: 'Synced!', 
+            text: `Round ID: ${currentSyncRoundId} | HCP Anda: ${hcp}`, 
+            timer: 2000 
+        });
+
+    } catch (err) {
+        console.error("Sync Error:", err.message);
+        Swal.fire('Error', 'Gagal update HCP atau tarik data', 'error');
+    }
 }
 
 async function fetchGroupScores() {
@@ -1776,41 +1845,44 @@ async function fetchGroupScores() {
     if (!roundId) return;
 
     try {
-        // 1. Ambil data tracks
         const { data: trackData, error: trackError } = await sb
             .from('tracks')
             .select('*')
-            .eq('round_id', roundId)
+e            .eq('round_id', roundId)
             .order('hole_number', { ascending: true });
 
         if (trackError) throw trackError;
 
-        // 2. Ambil data profiles (pastikan mengambil semua yang terlibat)
+        // Tarik data profiles termasuk kolom hcp
         const { data: profileData, error: profileError } = await sb
             .from('profiles')
-            .select('id, full_name');
+            .select('id, full_name, hcp');
 
         if (profileError) throw profileError;
 
-        // 3. Gabungkan manual dengan pembersihan string (trim)
+        // Validasi data gabungan
         groupData = trackData.map(t => {
-            // Pastikan perbandingan ID mengabaikan spasi atau perbedaan tipe data
             const userProfile = profileData.find(p => String(p.id).trim() === String(t.user_id).trim());
             return {
                 ...t,
                 profiles: { 
-                    full_name: userProfile ? userProfile.full_name : 'User ' + String(t.user_id).substring(0,4)
+                    full_name: userProfile ? userProfile.full_name : 'User ' + String(t.user_id).substring(0,4),
+                    // Gunakan || 0 untuk mencegah nilai null merusak kalkulasi
+                    hcp: userProfile ? (userProfile.hcp || 0) : 0 
                 }
             };
         });
 
-        console.log("Data Gabungan:", groupData);
+        console.log("Data Gabungan Terupdate:", groupData);
         
-        // Render ke UI
+        // PENTING: Panggil render setelah data siap
         renderMultiplayerTable();
 
     } catch (err) {
         console.error("Gagal tarik data:", err.message);
+        // Beri feedback ke user jika gagal
+        const tbody = document.getElementById('multi-tbody');
+        if(tbody) tbody.innerHTML = `<tr><td colspan='4' style='color:red;'>Error: ${err.message}</td></tr>`;
     }
 }
 
@@ -1819,10 +1891,8 @@ function renderMultiplayerTable() {
     const thead = document.getElementById('multi-thead');
     const tbody = document.getElementById('multi-tbody');
     const roundDisplay = document.getElementById('active-round-display');
-    // 1. Tampilkan Nama Round di Header
-    if (roundDisplay) {
-        roundDisplay.textContent = currentSyncRoundId || "-";
-    }
+
+    if (roundDisplay) { roundDisplay.textContent = currentSyncRoundId || "-"; }
 
     if (!tbody || !groupData || groupData.length === 0) {
         if(tbody) tbody.innerHTML = "<tr><td colspan='4' style='color:white; padding:10px;'>Menunggu data skor...</td></tr>";
@@ -1831,9 +1901,17 @@ function renderMultiplayerTable() {
 
     const players = [...new Set(groupData.map(item => item.profiles?.full_name || 'Anonim'))];
     let playerTotals = players.map(() => 0);
-    let totalParSemuaHole = 0; // VARIABEL BARU UNTUK TOTAL PAR
+    let playerHcpMap = {}; // Untuk menyimpan HCP unik per pemain
+    let totalParSemuaHole = 0;
 
-    // 1. Render Header
+    // Ambil HCP unik untuk masing-masing nama pemain
+    players.forEach(p => {
+        const pData = groupData.find(d => d.profiles?.full_name === p);
+        playerHcpMap[p] = pData ? pData.profiles.hcp : 0;
+    });
+
+    
+    // 1. Render Header (Tetap sama)
     let headerHtml = `<tr style="background: #1a472a; color: white;">
                         <th style="padding: 8px; border: 1px solid #444;">Hole</th>
                         <th style="padding: 8px; border: 1px solid #444;">PAR</th>`;
@@ -1848,8 +1926,6 @@ function renderMultiplayerTable() {
     for (let h = 1; h <= 18; h++) {
         const holeScores = groupData.filter(s => s.hole_number === h);
         const parVal = holeScores.length > 0 ? parseInt(holeScores[0].par) : 0;
-        
-        // Tambahkan par hole ini ke total akumulasi
         totalParSemuaHole += parVal; 
 
         bodyHtml += `<tr style="border-bottom: 1px solid #333;">
@@ -1860,60 +1936,134 @@ function renderMultiplayerTable() {
             const scoreEntry = groupData.find(s => s.hole_number === h && s.profiles?.full_name === player);
             const strokes = scoreEntry ? parseInt(scoreEntry.strokes) : 0;
             playerTotals[idx] += strokes;
-            
             bodyHtml += `<td style="padding: 6px; text-align: center; color: #00ff88;">${strokes || '-'}</td>`;
         });
         bodyHtml += `</tr>`;
     }
 
-    // 3. Render Footer (TOTAL)
-    // Sekarang kolom PAR akan menampilkan totalParSemuaHole
-    let footerHtml = `<tr style="background: rgba(0,255,136,0.1); font-weight: bold; border-top: 2px solid #00ff88;">
-                        <td style="padding: 10px; text-align: center; color: #fff;">TOTAL</td>
-                        <td style="padding: 10px; text-align: center; color: #fff;">${totalParSemuaHole}</td>`; // TOTAL PAR DI SINI
-    
+// 3. Render Footer
+    // Baris GROSS (Total Stroke)
+    let footerHtml = `<tr style="background: rgba(255,255,255,0.05); font-weight: bold;">
+                        <td style="padding: 10px; text-align: center; color: #fff;">GROSS</td>
+                        <td style="padding: 10px; text-align: center; color: #fff;">${totalParSemuaHole}</td>`;
     playerTotals.forEach(total => {
-        footerHtml += `<td style="padding: 10px; text-align: center; color: #00ff88;">${total}</td>`;
+        footerHtml += `<td style="padding: 10px; text-align: center; color: #fff;">${total}</td>`;
+    });
+    footerHtml += `</tr>`;
+
+    // Baris HCP
+    footerHtml += `<tr style="background: rgba(255,255,255,0.02); font-style: italic;">
+                    <td style="padding: 8px; text-align: center; color: #aaa;">HCP</td>
+                    <td style="padding: 8px; text-align: center;">-</td>`;
+    players.forEach(p => {
+        footerHtml += `<td style="padding: 8px; text-align: center; color: #ffcc00;">(${playerHcpMap[p]})</td>`;
+    });
+    footerHtml += `</tr>`;
+
+    // Baris NET
+    footerHtml += `<tr style="background: rgba(0,255,136,0.15); font-weight: bold; border-top: 2px solid #00ff88;">
+                    <td style="padding: 10px; text-align: center; color: #00ff88;">NET</td>
+                    <td style="padding: 10px; text-align: center; color: #fff;">-</td>`;
+    playerTotals.forEach((total, idx) => {
+        const net = total - playerHcpMap[players[idx]];
+        footerHtml += `<td style="padding: 10px; text-align: center; color: #00ff88;">${net}</td>`;
     });
     footerHtml += `</tr>`;
 
     tbody.innerHTML = bodyHtml + footerHtml;
 }
 
+
+
 // EKSPORT GRUP
 function exportGroupPdf() {
     const element = document.getElementById('pdf-report-hidden');
+    const activeHead = document.getElementById('multi-thead');
+    const activeBody = document.getElementById('multi-tbody');
+
+    if (!activeBody || activeBody.innerHTML.trim() === "" || activeBody.innerHTML.includes("Menunggu data")) {
+        return Swal.fire('Error', 'Data tabel belum siap.', 'error');
+    }
+
+    // 1. Tampilkan container sementara
     element.style.display = 'block';
     
+    // 2. Isi identitas ronde
     document.getElementById('pdf-round-id').innerText = currentSyncRoundId || 'Single Round';
     document.getElementById('pdf-date-multi').innerText = new Date().toLocaleDateString();
 
-    // Re-use tabel dari leaderboard multiplayer ke dalam PDF
+    // 3. PAKSA SEMUA DATA MASUK DALAM SATU TABEL UTUH
     const container = document.getElementById('pdf-tables-container');
-    container.innerHTML = document.getElementById('detail-scorecard-container').innerHTML;
+    container.innerHTML = `
+        <div style="width: 100%; font-family: Arial, sans-serif;">
+            <table style="width: 100%; border-collapse: collapse; border: 1px solid #333; font-size: 10px;">
+                <thead style="background-color: #1a472a; color: white;">
+                    ${activeHead.innerHTML}
+                </thead>
+                <tbody style="text-align: center;">
+                    ${activeBody.innerHTML}
+                </tbody>
+            </table>
+        </div>
+    `;
 
+    // 4. Perbaikan Visual untuk Baris HCP & NET agar terbaca di kertas putih
+    const pdfRows = container.querySelectorAll('tr');
+    pdfRows.forEach(row => {
+        row.style.borderBottom = "1px solid #eee";
+        
+        // Cari baris berdasarkan teks di kolom pertama
+        const firstColText = row.cells[0].innerText.toUpperCase();
+        
+        if (firstColText.includes("GROSS")) {
+            row.style.backgroundColor = "#f2f2f2";
+            row.style.fontWeight = "bold";
+        } 
+        else if (firstColText.includes("HCP")) {
+            row.style.color = "#856404"; // Warna kecokelatan/emas
+            row.style.backgroundColor = "#fff3cd"; 
+        } 
+        else if (firstColText.includes("NET")) {
+            row.style.backgroundColor = "#d4edda"; // Hijau muda transparan
+            row.style.color = "#155724";           // Hijau tua
+            row.style.fontWeight = "bold";
+            row.style.fontSize = "12px";           // NET dibuat sedikit lebih besar
+        }
+    });
+
+    // 5. Konfigurasi PDF (Landscape A4)
     const opt = {
-        margin: 10,
-        filename: `TerraGOLF_Report_${currentSyncRoundId}.pdf`,
+        margin: [10, 5, 10, 5],
+        filename: `TerraGOLF_Scorecard_${currentSyncRoundId}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+        html2canvas: { 
+            scale: 2, 
+            useCORS: true,
+            logging: false
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'landscape' 
+        }
     };
 
-    html2pdf().set(opt).from(element).save().then(() => {
-        element.style.display = 'none';
-    });
+    // Beri jeda agar browser selesai menggambar tabel sebelum di-capture
+    setTimeout(() => {
+        html2pdf().set(opt).from(element).save().then(() => {
+            element.style.display = 'none';
+        });
+    }, 1200);
 }
 
 //-----------------
 // Mengambil ID Lapangan dari Environment Variable Vercel
 // Gunakan Env Variable Vercel (NEXT_PUBLIC_MERCHANT_ID)
-
 //const MERCHANT_ID = process.env.NEXT_PUBLIC_MERCHANT_ID; 
 async function checkout() {
   const { data, error } = await supabase.functions.invoke('xendit-payment', {
     body: { 
-      merchantId: 'TGR', // Contoh: 'TGR'
+      merchantId: 'JNG', // Contoh: 'JNG'
       userId: user.id,
       email: user.email,
       fullName: user.user_metadata.full_name
@@ -1924,6 +2074,7 @@ async function checkout() {
     window.location.href = data.invoice_url;
   }
 }
+//--------------------------------------
 
 //---------------------------Versi 2 --------------------------
 // Tambah FUngsi-Fungsi
@@ -2012,9 +2163,9 @@ async function getRealWeather() {
 
     const apiKey = _partA+_partB+_partC;
     
-    // Koordinat Dago Heritage (bisa dinamis sesuai GPS user nantinya) 107.6258056, -6.8698692729
-    const lat = -6.8698692729; 
-    const lon = 107.6258056;
+    //  //-6.9168164,107.7640485
+    const lat = -6.9168164; 
+    const lon = 107.7640485;
 
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=id`);
@@ -2028,7 +2179,7 @@ async function getRealWeather() {
             const desc = data.weather[0].description;
 
             Swal.fire({
-                title: 'Condition of Dago Heritage',
+                title: 'Condition of Jatinangor National Golf',
                 html: `
                     <div style="text-align: left; font-size: 0.9rem;">
                         <p>🌤️ <b>Condition:</b> ${desc}</p>
