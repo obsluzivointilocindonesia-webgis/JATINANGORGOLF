@@ -1848,7 +1848,7 @@ async function fetchGroupScores() {
         const { data: trackData, error: trackError } = await sb
             .from('tracks')
             .select('*')
-e            .eq('round_id', roundId)
+            .eq('round_id', roundId)
             .order('hole_number', { ascending: true });
 
         if (trackError) throw trackError;
@@ -2055,6 +2055,7 @@ function exportGroupPdf() {
         });
     }, 1200);
 }
+
 
 //-----------------
 // Mengambil ID Lapangan dari Environment Variable Vercel
