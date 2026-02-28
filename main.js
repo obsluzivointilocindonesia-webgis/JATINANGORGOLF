@@ -45,12 +45,12 @@ if (!currentRoundId) {
 // 2. LOAD ASSET TILESET
 async function init() {
     try {
-        const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(4480001);
+        const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(4453573);
         viewer.scene.primitives.add(tileset);
         tileset.classificationType = Cesium.ClassificationType.BOTH;
-        viewer.camera.flyTo({//-6.9168164,107.7640485
-        destination: Cesium.Cartesian3.fromDegrees(107.7640485,-6.9168164, 1450),
-            orientation: { heading: Cesium.Math.toRadians(0), pitch: Cesium.Math.toRadians(-55.0), roll: 0.0 },
+        viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(107.6457061, -6.8659281, 1050),
+            orientation: { heading: Cesium.Math.toRadians(45), pitch: Cesium.Math.toRadians(-15.0), roll: 0.0 },
             duration: 2
         });      
     } catch (e) { console.error(e); }
@@ -58,7 +58,7 @@ async function init() {
 init();
 async function loadHoles() {
     try {
-        const holeResource = await Cesium.IonResource.fromAssetId(4473734);
+        const holeResource = await Cesium.IonResource.fromAssetId(4480416);
         const holeDataSource = await Cesium.GeoJsonDataSource.load(holeResource);
         await viewer.dataSources.add(holeDataSource);
 
@@ -400,111 +400,111 @@ function renderChart(labels, data) {
 // 7. KONTUR & CLEAR
 // VIEWER PER HOLE dan LOAD DATA ASSET KONTUR
 const holeData = {
- "1": {//-6.9143242,107.7652945
-        center: Cesium.Cartesian3.fromDegrees(107.7652945,-6.9143242, 990), // Koordinat Hole 1
-        contourAssetId: 4473235, // ID Asset Kontur Hole 1 di Ion
-        heading: 150, pitch: -40, roll:0 
+ "1": {//-6.867432,107.643656
+        center: Cesium.Cartesian3.fromDegrees(107.643656, -6.867432, 990), // Koordinat Hole 1
+        contourAssetId: 4446667, // ID Asset Kontur Hole 1 di Ion
+        heading: 247, pitch: -40, roll:0 
     },
-    "2": {//-6.9187865,107.7675594
-        center: Cesium.Cartesian3.fromDegrees(107.7675594, -6.9187865, 980),
-        contourAssetId: 4473238,
-        heading: 150, pitch: -45, roll:0
-    },
-
-    "3": {//-6.9197379,107.7666501
-        center: Cesium.Cartesian3.fromDegrees(107.7666501,-6.9197379, 1050),
-        contourAssetId: 4473239,
-        heading: 330, pitch: -60, roll:0
+    "2": {//-6.869415,107.641957
+        center: Cesium.Cartesian3.fromDegrees(107.641957, -6.869415, 980),
+        contourAssetId: 4446926,
+        heading: 187, pitch: -45, roll:0
     },
 
-    "4": {//-6.9178183,107.76579133 
-        center: Cesium.Cartesian3.fromDegrees(107.76579133 ,-6.9178183, 990),
-        contourAssetId: 4473241,
-        heading: 358, pitch: -60, roll:0
+    "3": {//-6.8703649,107.6437065 
+        center: Cesium.Cartesian3.fromDegrees(107.6437065, -6.8703649, 1050),
+        contourAssetId: 4446941,
+        heading: 45, pitch: -60, roll:0
     },
 
-    "5": {//-6.9132633,107.7642505
-        center: Cesium.Cartesian3.fromDegrees(107.7642505,-6.9132633, 950),
-        contourAssetId: 4473242,
-        heading: 345, pitch: -60, roll:0
+    "4": {//-6.8699650,107.6448563 
+        center: Cesium.Cartesian3.fromDegrees(107.6448563, -6.8699650, 990),
+        contourAssetId: 4446954,
+        heading: 217, pitch: -60, roll:0
     },
 
-    "6": {//-6.9112763,107.7643516
-        center: Cesium.Cartesian3.fromDegrees(107.7643516, -6.9112763, 990),
-        contourAssetId: 4473243,
-        heading: 10, pitch: -80, roll:0
+    "5": {//-6.8701316,107.6458811 
+        center: Cesium.Cartesian3.fromDegrees(107.6458811,-6.8701316, 990),
+        contourAssetId: 4446962,
+        heading: 98, pitch: -45, roll:0
     },
 
-    "7": {//-6.9125224,107.7665154
-        center: Cesium.Cartesian3.fromDegrees(107.7665154, -6.9125224, 1070),
-        contourAssetId: 4473244,
-        heading: 135, pitch: -70, roll:0
+    "6": {//-6.8698400,107.6464893 
+        center: Cesium.Cartesian3.fromDegrees(107.6464893, -6.8698400, 990),
+        contourAssetId: 4446964,
+        heading: 300, pitch: -55, roll:0
     },
 
-    "8": {//-6.9137433,107.7678288 
-        center: Cesium.Cartesian3.fromDegrees(107.7678288 , -6.9137433, 990),
-        contourAssetId: 4473246,
+    "7": {//-6.8672737,107.6460561
+        center: Cesium.Cartesian3.fromDegrees(107.6460561, -6.8672737, 1070),
+        contourAssetId: 4446971,
+        heading: 17, pitch: -55, roll:0
+    },
+
+    "8": {//-6.8685402,107.6444397 ; 
+        center: Cesium.Cartesian3.fromDegrees(107.6444397, -6.8685402, 1060),
+        contourAssetId: 4446975,
+        heading: 225, pitch: -45, roll:0
+    },
+
+    "9": {//-6.8678570,107.6445063; 
+        center: Cesium.Cartesian3.fromDegrees(107.6445063, -6.8678570, 1050),
+        contourAssetId: 4446978,
+        heading: 27, pitch: -55, roll:0
+    },
+
+    "10": {//-6.8642305,107.6502512
+        center: Cesium.Cartesian3.fromDegrees(107.6502512,-6.8642305, 1055),
+        contourAssetId: 4446980,
+        heading: 90, pitch: -50, roll:0
+    },
+
+    "11": {//-6.8636056,107.6521967
+        center: Cesium.Cartesian3.fromDegrees(107.6521967,-6.8636056, 1050),
+        contourAssetId: 4446987,
+        heading: 60, pitch: -55, roll:0
+    },
+
+    "12": {//-6.8665780,107.6505303 
+        center: Cesium.Cartesian3.fromDegrees(107.6505303,-6.8665780, 1070),
+        contourAssetId: 4446993,
+        heading: 220, pitch: -45, roll:0
+    },
+
+    "13": {//-6.8692817,107.6504553 
+        center: Cesium.Cartesian3.fromDegrees(107.6504553, -6.8692817, 1100),
+        contourAssetId: 4446989,
         heading: 150, pitch: -60, roll:0
     },
 
-    "9": {//-6.9130865,107.7654124
-        center: Cesium.Cartesian3.fromDegrees(107.7654124,-6.9130865, 995),
-        contourAssetId: 4473247,
-        heading: 320, pitch: -60, roll:0
+    "14": {//-6.8691068,107.6492659
+        center: Cesium.Cartesian3.fromDegrees(107.6492659,-6.8691068, 1020),
+        contourAssetId: 4446991,
+        heading: 260, pitch: -50, roll:0
     },
 
-    "10": {//-6.9148462,107.7626087
-        center: Cesium.Cartesian3.fromDegrees(107.7626087,-6.9148462, 990),
-        contourAssetId: 4473248,
-        heading: 180, pitch: -60, roll:0
+    "15": {//-6.8669446,107.6494201
+        center: Cesium.Cartesian3.fromDegrees(107.6494201,-6.8669446, 1100),
+        contourAssetId: 4446990,
+        heading: 45, pitch: -45, roll:0
     },
 
-    "11": {//-6.9188286,107.7622214
-        center: Cesium.Cartesian3.fromDegrees(107.7622214,-6.9188286, 1000),
-        contourAssetId: 4473249,
-        heading: 200, pitch: -60, roll:0
+    "16": {//-6.8650002,107.6505345
+        center: Cesium.Cartesian3.fromDegrees(107.6505345,-6.8650002, 1030),
+        contourAssetId: 4446999,
+        heading: 300, pitch: -30, roll:0
     },
 
-    "12": {//-6.9207904,107.7627687
-        center: Cesium.Cartesian3.fromDegrees(107.7627687,-6.9207904, 900),
-        contourAssetId: 4473251,
-        heading: 150, pitch: -60, roll:0
+    "17": {//-6.8653907,107.6461665
+        center: Cesium.Cartesian3.fromDegrees(107.6461665,-6.8653907, 1020),
+        contourAssetId: 4447001,
+        heading: 220, pitch: -45, roll:0
     },
 
-    "13": {//-6.9231226,107.7644105
-        center: Cesium.Cartesian3.fromDegrees(107.7644105, -6.9231226, 1000),
-        contourAssetId: 4473252,
-        heading: 150, pitch: -60, roll:0
-    },
-
-    "14": {//-6.9234004,107.7671974
-        center: Cesium.Cartesian3.fromDegrees(107.7671974,-6.9234004, 1020),
-        contourAssetId: 4473253,
-        heading: 80, pitch: -60, roll:0
-    },
-
-    "15": {//-6.9220449,107.7677783
-        center: Cesium.Cartesian3.fromDegrees(107.7677783,-6.9220449, 950),
-        contourAssetId: 4473254,
-        heading: 270, pitch: -75, roll:0
-    },
-
-    "16": {//-6.9208830,107.7654124
-        center: Cesium.Cartesian3.fromDegrees(107.7654124,-6.9208830, 1030),
-        contourAssetId: 4473255,
-        heading: 270, pitch: -60, roll:0
-    },
-
-    "17": {//-6.9178099,107.7628697
-        center: Cesium.Cartesian3.fromDegrees(107.7628697,-6.9178099, 1000),
-        contourAssetId: 4473256,
-        heading: 0, pitch: -60, roll:0
-    },
-
-    "18": {//-6.9135328,107.7631813
-        center: Cesium.Cartesian3.fromDegrees(107.7631813,-6.9135328, 1030),
-        contourAssetId: 4473257,
-        heading: 0, pitch: -70, roll:0
+    "18": {//-6.8641993,107.6468163
+        center: Cesium.Cartesian3.fromDegrees(107.6468163,-6.8641993, 1090),
+        contourAssetId: 4447004,
+        heading: 60, pitch: -50, roll:0
     }
 };
 
@@ -667,7 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //-----------------------------------------------
 document.getElementById('saveTrackBtn').addEventListener('click', async () => {
     const holeId = document.getElementById('holeSelect').value;
-    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
     if (!holeId) return alert("Select Hole # First");
     if (activePoints.length < 2) return alert("At least 2 points to save track");
 
@@ -871,7 +871,7 @@ document.getElementById('historyBtn').addEventListener('click', async () => {
     }
 
     // 1. Deteksi Lapangan Saat Ini
-    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
 
     console.log(`Mengambil history untuk: ${currentUser.id} di lapangan ${currentMerchantId}`);
 
@@ -947,7 +947,7 @@ async function deleteTrackHistory() {
     if (!currentUser) return alert("Please login first");
 
     // 1. Deteksi Merchant Saat Ini
-    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
 
     // 2. Ambil data HANYA untuk user ini DAN lapangan ini
     const { data: cloudTracks, error } = await sb
@@ -1331,7 +1331,7 @@ async function saveScoreToCloud(hole, par, strokes, term) {
     if (!currentUser) return;
 
     // Tambahkan deteksi merchant
-    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
 
     const { error } = await sb
         .from('tracks')
@@ -1356,7 +1356,7 @@ async function checkAccess() {
     const overlay = document.getElementById('auth-overlay');
     if (!session) { overlay.style.display = 'flex'; return; }
 
-    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
 
     // 1. Ambil/Buat Profil
     let { data: profile } = await sb.from('profiles').select('*').eq('id', session.user.id).maybeSingle();
@@ -1442,13 +1442,12 @@ function lockUI(email, merchantId) {
 }
 checkAccess();
 
-
 // akses Xendit Payment
 async function startXenditPayment(userProfile) {
     // 1. Deteksi Lapangan secara otomatis berdasarkan Domain
     let merchantId = 'TGR'; // Default
-    if (window.location.hostname.includes('jng')) {
-        merchantId = 'JNG';
+    if (window.location.hostname.includes('mvg')) {
+        merchantId = 'MVG';
     }
 
     // 2. Ambil email dari auth
@@ -1498,7 +1497,7 @@ async function loadTracksFromCloud() {
     if (!session) return;
 
     // 1. Identifikasi lapangan saat ini
-    const currentMerchantId = window.location.hostname.includes('jng') ? 'JNG' : 'TGR';
+    const currentMerchantId = window.location.hostname.includes('mvg') ? 'MVG' : 'TGR';
 
     // 2. Tambahkan .eq('merchant_id', ...) pada query
     const { data: tracks, error } = await sb
@@ -1909,11 +1908,12 @@ function exportGroupPdf() {
 //-----------------
 // Mengambil ID Lapangan dari Environment Variable Vercel
 // Gunakan Env Variable Vercel (NEXT_PUBLIC_MERCHANT_ID)
+
 //const MERCHANT_ID = process.env.NEXT_PUBLIC_MERCHANT_ID; 
 async function checkout() {
   const { data, error } = await supabase.functions.invoke('xendit-payment', {
     body: { 
-      merchantId: 'JNG', // Contoh: 'JNG'
+      merchantId: 'TGR', // Contoh: 'TGR'
       userId: user.id,
       email: user.email,
       fullName: user.user_metadata.full_name
@@ -1924,19 +1924,40 @@ async function checkout() {
     window.location.href = data.invoice_url;
   }
 }
-//--------------------------------------
-
+//---------------------------------------------------
 //---------------------------Versi 2 --------------------------
 // Tambah FUngsi-Fungsi
 //-----------------------------------------------------------
 // Fungsi AI Advisor
+// 1. Fungsi Pencari Stik (Helper)
+function getClubRecommendation(effectiveDist) {
+    const clubs = [
+        { name: "Driver", min: 210, max: 1000, tip: "Fokus pada akurasi, bukan tenaga." },
+        { name: "3-Wood", min: 190, max: 210, tip: "Gunakan jika fairway cukup lebar." },
+        { name: "Hybrid", min: 175, max: 190, tip: "Pastikan ball-strike yang bersih." },
+        { name: "Iron 4", min: 165, max: 175, tip: "Penetrasi udara rendah, cocok untuk angin kencang." },
+        { name: "Iron 5", min: 155, max: 165, tip: "Ayunkan dengan ritme yang konsisten." },
+        { name: "Iron 6", min: 145, max: 155, tip: "Kontrol arah lebih utama dari jarak." },
+        { name: "Iron 7", min: 135, max: 145, tip: "Targetkan area aman di Green." },
+        { name: "Iron 8", min: 125, max: 135, tip: "Gunakan untuk flight bola yang lebih tinggi." },
+        { name: "Iron 9", min: 115, max: 125, tip: "Waktunya menyerang pin!" },
+        { name: "Pitching Wedge", min: 100, max: 115, tip: "Kontrol kekuatan swing Anda." },
+        { name: "Gap Wedge", min: 85, max: 100, tip: "Cari pendaratan di dekat hole." },
+        { name: "Sand Wedge", min: 70, max: 85, tip: "Fokus pada landing spot." },
+        { name: "Lob Wedge", min: 0, max: 70, tip: "Kontrol spin sangat penting di sini." }
+    ];
+
+    const suggestion = clubs.find(c => effectiveDist >= c.min && effectiveDist < c.max);
+    return suggestion ? suggestion : { name: "Putter", tip: "Gunakan jika bola sudah di tepi green." };
+}
+
+// 2. Fungsi Utama AI Advisor yang digabung
 function runAiAdvisor() {
     if (activePoints.length < 2) {
-        Swal.fire("Info", "Determine the position and target points on the map..", "info");
+        Swal.fire("Info", "Tentukan dulu titik posisi dan target pada peta.", "info");
         return;
     }
 
-    // Ambil data segmen terakhir (paling baru dibuat)
     const lastIdx = activePoints.length - 1;
     const pStart = activePoints[lastIdx - 1].position;
     const pEnd = activePoints[lastIdx].position;
@@ -1944,48 +1965,37 @@ function runAiAdvisor() {
     const cStart = Cesium.Cartographic.fromCartesian(pStart);
     const cEnd = Cesium.Cartographic.fromCartesian(pEnd);
 
-    // Data yang sama dengan fungsi updateVisuals Anda
     const dist = Cesium.Cartesian3.distance(pStart, pEnd);
     const deltaH = cEnd.height - cStart.height;
     
-    // LOGIKA AI: Menghitung Jarak Efektif (Play-As Distance)
-    // Rumus: Jarak + (Beda Tinggi * Faktor Penyesuaian)
-    // Faktor 1.5 digunakan karena bola golf kehilangan/mendapat jarak lebih dari sekadar angka linear elevasi
+    // Hitung Jarak Efektif
     const effectiveDist = dist + (deltaH * 1.5);
 
-    // LOGIKA PEMILIHAN STIK (Bisa Anda sesuaikan dengan jarak rata-rata Anda)
-    let club = "";
-    let tip = "";
+    // MEMANGGIL FUNGSI REKOMENDASI (Pengganti if-else)
+    const recommendation = getClubRecommendation(effectiveDist);
 
-    if (effectiveDist > 210) { club = "Driver / 3-Wood"; tip = "Focus on accuracy, not power."; }
-    else if (effectiveDist > 180) { club = "Hybrid / Iron 4"; tip = "Ensure a clean ball-strike."; }
-    else if (effectiveDist > 160) { club = "Iron 5 / 6"; tip = "Swing with a consistent rhythm."; }
-    else if (effectiveDist > 140) { club = "Iron 7 / 8"; tip = "Target safe area in Green."; }
-    else if (effectiveDist > 110) { club = "Iron 9 / PW"; tip = "Time to hit the pins!"; }
-    else { club = "Wedges (GW/SW/LW)"; tip = "Spin control is very important here."; }
-
-    // Tampilkan hasil lewat popup premium
     Swal.fire({
         title: '<span style="color: #00ff88;">AI Caddy Advisor</span>',
         background: '#1a1a1a',
         color: '#ffffff',
         html: `
             <div style="text-align: left; border: 1px solid #444; padding: 15px; border-radius: 10px;">
-                <p style="margin: 5px 0;">📍 Distance: <b>${dist.toFixed(1)} m</b></p>
-                <p style="margin: 5px 0;">⛰️ Height Difference: <b style="color: ${deltaH >= 0 ? '#ff4444' : '#00ff88'};">${deltaH.toFixed(1)} m (${deltaH >= 0 ? 'Uphill' : 'Downhill'})</b></p>
+                <p style="margin: 5px 0;">📍 Jarak Langsung: <b>${dist.toFixed(1)} m</b></p>
+                <p style="margin: 5px 0;">⛰️ Beda Tinggi: <b style="color: ${deltaH >= 0 ? '#ff4444' : '#00ff88'};">${deltaH.toFixed(1)} m (${deltaH >= 0 ? 'Tanjakan' : 'Turunan'})</b></p>
                 <hr style="border-color: #444;">
-                <p style="font-size: 1.1rem;">🎯 Effective Distance: <b style="color: #00ff88;">${effectiveDist.toFixed(1)} m</b></p>
+                <p style="font-size: 1.1rem;">🎯 Jarak Efektif: <b style="color: #00ff88;">${effectiveDist.toFixed(1)} m</b></p>
                 <div style="margin-top: 15px; background: #333; padding: 10px; border-radius: 5px; text-align: center;">
                     <small>Gunakan Stik:</small><br>
-                    <strong style="font-size: 1.6rem; color: #ffeb3b;">${club}</strong>
+                    <strong style="font-size: 1.6rem; color: #ffeb3b;">${recommendation.name}</strong>
                 </div>
-                <p style="margin-top: 10px; font-style: italic; font-size: 0.8rem; color: #bbb;">💡 Tip: ${tip}</p>
+                <p style="margin-top: 10px; font-style: italic; font-size: 0.8rem; color: #bbb;">💡 Tip: ${recommendation.tip}</p>
             </div>
         `,
-        confirmButtonText: 'Thank You, Caddy!',
+        confirmButtonText: 'Terima Kasih, Caddy!',
         confirmButtonColor: '#27ae60'
     });
 }
+
 
 
 //---------------------------------------
@@ -2004,9 +2014,9 @@ async function getRealWeather() {
 
     const apiKey = _partA+_partB+_partC;
     
-    //  //-6.9168164,107.7640485
-    const lat = -6.9168164; 
-    const lon = 107.7640485;
+    //  (bisa dinamis sesuai GPS user nantinya)
+    const lat = -6.8659281; 
+    const lon = 107.6457061;
 
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=id`);
@@ -2020,7 +2030,7 @@ async function getRealWeather() {
             const desc = data.weather[0].description;
 
             Swal.fire({
-                title: 'Condition of Jatinangor National Golf',
+                title: 'Condition of Mountain View Golf Club',
                 html: `
                     <div style="text-align: left; font-size: 0.9rem;">
                         <p>🌤️ <b>Condition:</b> ${desc}</p>
@@ -2045,87 +2055,71 @@ async function getRealWeather() {
 
 //----------------------compas
 //
-let compassActive = false;
+let isCompassRunning = false;
 
-function toggleCompass() {
-    if (!compassActive) {
-        startCompass();
-        compassActive = true;
-        document.getElementById('compassBtn').style.borderColor = '#00ff88';
+function startCompass() {
+    if (!window.DeviceOrientationEvent) {
+        Swal.fire("Error", "Perangkat tidak mendukung sensor arah.", "error");
+        return;
+    }
+
+    // Request permission untuk iOS 13+
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted') {
+                    activateListeners();
+                }
+            })
+            .catch(err => console.error("iOS Permission Error:", err));
     } else {
-        stopCompass();
-        compassActive = false;
-        document.getElementById('compassBtn').style.borderColor = '#444';
-        document.getElementById('compassIcon').style.transform = 'rotate(0deg)';
-        document.getElementById('directionText').innerText = 'N';
+        // Android dan browser lain
+        activateListeners();
     }
 }
 
-function startCompass() {
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        // KHUSUS iOS
-        DeviceOrientationEvent.requestPermission()
-            .then(response => {
-                if (response == 'granted') {
-                    window.addEventListener('deviceorientation', handleOrientation, true);
-                } else {
-                    Swal.fire("Izin Ditolak", "Akses sensor arah dibutuhkan untuk kompas.", "warning");
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                Swal.fire("Error", "Sensor tidak didukung di perangkat ini.", "error");
-            });
+function activateListeners() {
+    // Android Chrome seringkali hanya mengirim data lewat event 'deviceorientationabsolute'
+    if ('ondeviceorientationabsolute' in window) {
+        window.addEventListener('deviceorientationabsolute', handleOrientation, true);
     } else {
-        // ANDROID & LAINNYA
-        // Gunakan 'deviceorientationabsolute' jika tersedia untuk akurasi magnetik
-        if ('ondeviceorientationabsolute' in window) {
-            window.addEventListener('deviceorientationabsolute', handleOrientation, true);
-        } else {
-            window.addEventListener('deviceorientation', handleOrientation, true);
-        }
+        window.addEventListener('deviceorientation', handleOrientation, true);
     }
+    isCompassRunning = true;
+    console.log("Compass listeners activated");
 }
 
 function handleOrientation(event) {
-    let heading = null;
+    let heading = 0;
 
-    // 1. Coba deteksi standar iOS
+    // Cek data dari iOS
     if (event.webkitCompassHeading) {
         heading = event.webkitCompassHeading;
     } 
-    // 2. Coba deteksi standar Android (Absolute)
-    else if (event.absolute === true && event.alpha !== null) {
-        heading = 360 - event.alpha;
-    }
-    // 3. Fallback jika alpha tersedia tapi tidak absolute
+    // Cek data dari Android (alpha adalah rotasi z-axis)
     else if (event.alpha !== null) {
+        // Untuk Android, alpha biasanya dimulai dari 0 saat aplikasi dibuka.
+        // Jika event.absolute true, maka 0 adalah Utara sejati.
         heading = 360 - event.alpha;
     }
 
-    if (heading !== null) {
+    if (heading !== 0) {
         const icon = document.getElementById('compassIcon');
         const text = document.getElementById('directionText');
         
-        // Membulatkan angka untuk performa lebih ringan
-        const roundedHeading = Math.round(heading);
-        
-        // Putar ikon
-        icon.style.transform = `rotate(${-roundedHeading}deg)`;
+        // Update rotasi ikon
+        icon.style.transform = `rotate(${-heading}deg)`;
 
-        // Update teks arah
+        // Update teks label
         const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-        const index = Math.round(roundedHeading / 45) % 8;
+        const index = Math.round(heading / 45) % 8;
         text.innerText = directions[index];
-        
-        // DEBUG: Hapus baris ini jika sudah jalan
-        console.log("Heading:", roundedHeading);
     }
 }
 
 function stopCompass() {
-    window.removeEventListener('deviceorientation', handleOrientation);
-    window.removeEventListener('deviceorientationabsolute', handleOrientation);
+  window.removeEventListener('deviceorientation', handleOrientation);
+  window.removeEventListener('deviceorientationabsolute', handleOrientation);
 }
 
 //-------------end compas ----------------------------
