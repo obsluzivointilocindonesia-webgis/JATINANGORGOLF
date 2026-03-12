@@ -9,7 +9,7 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const sb = supabase.createClient(supabaseUrl, supabaseKey);
 let playerHCPs = {}; // Menyimpan { "Nama Pemain": nilai_hcp }
 
-Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NmUzZDVlMi1lM2Q3LTQzZDUtODg2Ni0yZTEzZGViODFjYTAiLCJpZCI6MzkwMjY2LCJpYXQiOjE3NzA5Nzg4ODV9.bGZbsj_VhF4AviF2Zd6Ohin27yoQ9tthvyWLbUj5fjM"
+Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5ODI3YTZiMS0xMmQxLTQ5MjEtYjkwYy0wMzkwZDUwNzA0ODYiLCJpZCI6MzkwMjY2LCJpYXQiOjE3NzE5NDQ3NzF9.oSyyw-EfmIReUGiyrXd5nugPQnoMjXJH_ySC66NdjC0"
 const viewer = new Cesium.Viewer('cesiumContainer', {
     homeButton: false,
     fullscreenButton: false,
